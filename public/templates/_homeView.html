@@ -1,0 +1,51 @@
+<div ng-controller="JobbedOutController as jobsCtrl">
+  <h1>Jobbed Out</h1>
+
+  <div class="add-job-button">
+    <button id="add-job" ng-click="jobsCtrl.showNewJobForm()">Add a Job</button>
+  </div>
+
+  <div ng-show="jobsCtrl.showForm">
+    <form action="">
+      <div>
+        <input id="title" placeholder="Title" ng-model="jobsCtrl.newJob.title">
+      </div>
+      <div>
+        <input id="company" placeholder="Company" ng-model="jobsCtrl.newJob.company">
+      </div>
+      <div>
+        <input id="link" placeholder="Link" ng-model="jobsCtrl.newJob.link">
+      </div>
+      <div style="margin-top: 12px">
+        <button ng-click="jobsCtrl.addNewJob()">Save</button> &nbsp;
+        <a href="#" ng-click="jobsCtrl.showNewJobForm()">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <div ng-hide="jobsCtrl.showForm">
+    <form action="">
+      <input type="search" id="search-title" placeholder="Search by Title" ng-model="jobsCtrl.searchParams.title">
+      <input type="search" id="search-company" placeholder="Search by Company" ng-model="jobsCtrl.searchParams.company">
+      Sort by:
+      <select id="sort" ng-model="jobsCtrl.searchParams.sort">
+        <option value="">Choose...</option>
+        <option value="createdAt">Created At</option>
+        <option value="title">Title</option>
+        <option value="company">Company</option>
+      </select>
+      <button ng-click="jobsCtrl.searchJobs()">Search</button>
+    </form>
+  </div>
+
+  <section id="jobs-container" ng-hide="jobsCtrl.showForm">
+    <ul ng-repeat="job in jobsCtrl.jobs">
+      <li class="job">
+        <h3><a href="#">{{ job.title }}</a></h3>
+        <p>at <strong>{{ job.company }}</strong>, posted at {{ job.createdAt }}</p>
+        <button class="delete" ng-click="jobsCtrl.deleteJob(job._id)">Delete</button>
+      </li>
+    </ul>
+    <button id="load-more" ng-click="jobsCtrl.loadMore()">Load More</button>
+  </section>
+</div>

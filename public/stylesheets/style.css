@@ -1,0 +1,20 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.add-job-button {
+  margin: 0 0 24px;
+}
+
+.add-job-save-button {
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none;
+}
